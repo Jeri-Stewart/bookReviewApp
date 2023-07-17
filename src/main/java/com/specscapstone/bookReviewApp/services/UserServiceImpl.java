@@ -3,7 +3,6 @@ package com.specscapstone.bookReviewApp.services;
 import com.specscapstone.bookReviewApp.entities.User;
 import com.specscapstone.bookReviewApp.dtos.UserDto;
 import com.specscapstone.bookReviewApp.repositories.UserRepository;
-import com.specscapstone.bookReviewApp.configuration.UserSession;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -57,8 +56,10 @@ public class UserServiceImpl implements UserService {
         return response;
     }
 
+
+
     @Override
-    public List<String> userLogin(String username, String password) {
+    public List<String> logUser(String username, String password) {
         List<String> response = new ArrayList<>();
 
         Optional<User> userOptional = userRepository.findByUsername(username);
@@ -67,10 +68,6 @@ public class UserServiceImpl implements UserService {
             // Check password matches hashed password
             if (passwordEncoder.matches(password, userOptional.get().getPassword())) {
                 response.add("User login successful");
-                // Get the username
-                String retrievedUsername = userOptional.get().getUsername();
-                // Create User Session
-                storeUserSession(userOptional.get(), retrievedUsername);
             } else {
                 response.add("Username or Password is incorrect");
             }
@@ -79,11 +76,6 @@ public class UserServiceImpl implements UserService {
         }
 
         return response;
-    }
-
-    private void storeUserSession(User user, String username) {
-        UserSession userSession = new UserSession(user, username);
-        SecurityContextHolder.getContext().setAuthentication((Authentication) userSession);
     }
 }
 

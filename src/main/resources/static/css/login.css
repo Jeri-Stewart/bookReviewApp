@@ -54,7 +54,7 @@ body:before {
     top: -80px;
 }
 
-input[type="username"],
+input[type="text"],
 input[type="password"] {
     height: 40px; /* Increase the height as desired */
     background-color: rgba(184, 192, 255, 0.1); /* Set the background color with transparency */

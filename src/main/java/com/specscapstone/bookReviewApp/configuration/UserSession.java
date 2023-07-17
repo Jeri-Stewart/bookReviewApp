@@ -1,4 +1,4 @@
-package com.specscapstone.bookReviewApp.configuration;
+/* package com.specscapstone.bookReviewApp.configuration;
 
 import com.specscapstone.bookReviewApp.entities.User;
 
@@ -18,5 +18,5 @@ public class UserSession extends User {
     public String getUsername() {
         return user.getUsername();
     }
-
 }
+*/

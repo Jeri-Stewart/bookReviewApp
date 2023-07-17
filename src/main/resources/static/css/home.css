@@ -1,12 +1,20 @@
-/* Add your custom styles here */
 .navbar {
-    background-color: #333;
+    background-color: #480CA8;
     color: #fff;
     padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .navbar-links {
-    margin-right: auto;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.navbar-user-info {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .navbar-link {
@@ -49,3 +57,4 @@ h2 {
 .book-card:hover {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
+

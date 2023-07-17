@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (responseMessage === "User registered successfully") {
           // Redirect to the login page after the user clicks "OK"
-          window.location.href = "/login"; // Replace "/login" with the actual login page URL
+          window.location.href = "/login";
         }
       })
       .catch(error => {
