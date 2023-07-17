@@ -53,6 +53,9 @@ public class User {
         if (userDto.getUsername() != null) {
             this.username = userDto.getUsername();
         }
+        if (userDto.getPassword() != null) {
+            this.password = userDto.getPassword();
+        }
     }
 }
 

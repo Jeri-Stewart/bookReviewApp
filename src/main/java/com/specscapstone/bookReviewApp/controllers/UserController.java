@@ -5,6 +5,9 @@ import com.specscapstone.bookReviewApp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 import java.util.List;
 
@@ -12,18 +15,20 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/users")
 public class UserController {
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+
+    private final UserService userService;
+
     @Autowired
-    private UserService userService;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     // To register a new user
     @PostMapping("/register-user")
-    public List<String> userRegister(@RequestBody UserDto userDto){
-        String passHash = passwordEncoder.encode(userDto.getPassword());
-        userDto.setPassword(passHash);
+    public List<String> userRegister(@RequestBody UserDto userDto) {
+        logger.debug("Received UserDto: {}", userDto.toString());
         List<String> response = userService.addUser(userDto);
-        System.out.println("UserController - addUser response: " + response);
         return response;
     }
 
@@ -33,3 +38,4 @@ public class UserController {
         return userService.userLogin(username, password);
     }
 }
+

@@ -18,19 +18,23 @@ public class SecurityConfg {
                 .authorizeHttpRequests((authz) ->
                         authz
                                 .requestMatchers("/login", "/register", "/profile", "/review", "/css/**", "/js/**", "/images/**", "/api/v1/users/register-user").permitAll()
+                                .requestMatchers(new AntPathRequestMatcher("/**")).permitAll()
                                 .requestMatchers(new AntPathRequestMatcher("/api/v1/users/register-user", HttpMethod.POST.name())).permitAll()
-                ).formLogin(
+                )
+                .formLogin(
                         form -> form
                                 .loginPage("/login")
                                 .defaultSuccessUrl("/home")
                                 .loginProcessingUrl("/login")
                                 .permitAll()
-                ).logout(
+                )
+                .logout(
                         logout -> logout
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                                 .permitAll()
                 );
-        return http.build();
 
+        return http.build();
     }
 }
+

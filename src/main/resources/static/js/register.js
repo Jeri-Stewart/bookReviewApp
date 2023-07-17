@@ -14,11 +14,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Create a user object
     const user = {
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      username: username,
-      password: password
+      "firstName": firstName,
+      "lastName": lastName,
+      "email": email,
+      "username": username,
+      "password": password
     };
     console.log(user)
     const baseUrl = 'http://localhost:8080/api/v1/users/register-user'
@@ -38,17 +38,9 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .then(data => {
         console.log("two");
-        if (data.length > 0) {
-          // Registration failed, display error messages
-          const errorMessages = data.join('\n');
-          alert('Registration failed:\n' + errorMessages);
-        } else {
-          // Registration successful, display success message
-          alert('Registration successful');
-          // Redirect to the login page after a delay of 20 seconds
-          console.log("three");
-          console.log("four");
-        }
+        // Always display the response as an alert
+        const responseMessage = data.join('\n');
+        alert(responseMessage);
       })
       .catch(error => {
         console.error('Error:', error);
