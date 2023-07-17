@@ -41,6 +41,11 @@ document.addEventListener("DOMContentLoaded", () => {
         // Always display the response as an alert
         const responseMessage = data.join('\n');
         alert(responseMessage);
+
+        if (responseMessage === "User registered successfully") {
+          // Redirect to the login page after the user clicks "OK"
+          window.location.href = "/login"; // Replace "/login" with the actual login page URL
+        }
       })
       .catch(error => {
         console.error('Error:', error);
@@ -48,3 +53,4 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   });
 });
+
