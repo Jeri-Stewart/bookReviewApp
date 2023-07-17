@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@ResponseBody
 @RestController
 @RequestMapping("/api/v1/users")
 public class UserController {
@@ -17,20 +18,18 @@ public class UserController {
     private PasswordEncoder passwordEncoder;
 
     // To register a new user
-    @PostMapping("/register")
-    public List<String> addUser(@RequestBody UserDto userDto){
+    @PostMapping("/register-user")
+    public List<String> userRegister(@RequestBody UserDto userDto){
         String passHash = passwordEncoder.encode(userDto.getPassword());
         userDto.setPassword(passHash);
-        return userService.addUser(userDto);
+        List<String> response = userService.addUser(userDto);
+        System.out.println("UserController - addUser response: " + response);
+        return response;
     }
 
     // To log in a user
-    @PostMapping("/login")
-    public List<String> userLogin(@RequestBody UserDto userDto) {
-        return userService.userLogin(userDto);
-    }
-    String login() {
-        return "login";
+    @PostMapping("/login-user")
+    public List<String> userLogin(@RequestParam String username, @RequestParam String password) {
+        return userService.userLogin(username, password);
     }
 }
-

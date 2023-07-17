@@ -2,24 +2,26 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}">
     <title>Login Page</title>
-
-
 </head>
 <body>
+    <div class="title">
+        <h1>Welcome to BookCritic</h1>
+    </div>
+
     <div class="login-form">
-        <img class="login-avatar" th:src="@{/images/tempAvatar.png}" alt="Avatar">
+        <img th:src="@{/images/avatarLoginThree.png}" class="login-avatar" alt="testing">
         <form th:action="@{/login}" method="post">
-            <input type="email" name="email" placeholder="Email" required><br>
+            <input type="username" name="username" placeholder="Username" required><br>
             <input type="password" name="password" placeholder="Password" required><br>
             <button class="login-button" type="submit">Login</button>
         </form>
-        <p>Not a user? <a th:href="@{/register}">Register here</a>.</p>
+        <p>Not Registered? <a th:href="@{/register}">Register here</a>.</p>
     </div>
-
-
-    <script th:src="@{/javascipt/login.js}"></script>
+    <script th:src="@{/js/login.js}"></script>
 </body>
 </html>
+

@@ -2,9 +2,33 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/register.css}">
+    <title>Registration Page</title>
 </head>
 <body>
+    <div class="main-container">
+        <div class="title">
+            <h1>Welcome to BookCritic. Register below:</h1>
+        </div>
+        <div class="registration-items">
+            <img th:src="@{/images/bookReadRegister.gif}" class="registration-image" alt="boy reading a book gif">
+            <div class="registration-form">
+                <form th:action="@{/register-user}" method="post" class="register-form">
+                    <input type="text" name="firstName" placeholder="First Name" required><br>
+                    <input type="text" name="lastName" placeholder="Last Name" required><br>
+                    <input type="email" name="email" placeholder="Email" required><br>
+                    <input type="text" name="username" placeholder="Username" required><br>
+                    <input type="password" name="password" placeholder="Password" required><br>
+                    <button class="register-button" type="submit">Register</button>
+                </form>
+                <p>Already Registered? <a th:href="@{/login}">Login here</a>.</p>
+            </div>
+        </div>
+    </div>
 
+
+    <script th:src="@{/js/register.js}"></script>
 </body>
 </html>

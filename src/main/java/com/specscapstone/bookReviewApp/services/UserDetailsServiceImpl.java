@@ -1,4 +1,4 @@
-package com.specscapstone.bookReviewApp.services;
+/*package com.specscapstone.bookReviewApp.services;
 
 import com.specscapstone.bookReviewApp.entities.User;
 import com.specscapstone.bookReviewApp.repositories.UserRepository;
@@ -38,3 +38,5 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return Collections.emptyList();
     }
 }
+
+ */

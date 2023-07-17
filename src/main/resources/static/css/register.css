@@ -1,0 +1,79 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: rgb(238,174,202);
+  background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+}
+
+.title {
+    color: #F72585;
+    text-align: center;
+    font-family: Impact, sans-serif;
+    margin-bottom: 20px;
+}
+
+.registration-image {
+    position: relative;
+    top: -10px;
+    left: 5px;
+    height: 690px;
+    width: 600px;
+}
+
+.registration-form {
+  background-color: #FFFFFF;
+  display: inline-block;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  height: 650px; /* Set the desired height */
+  width: 500px; /* Set the desired width */
+}
+
+.registration-form form {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Make the form occupy the full height of the .registration-form container */
+  width: 100%; /* Make the form occupy the full width of the .registration-form container */
+}
+
+.registration-form input[type="text"],
+.registration-form input[type="email"],
+.registration-form input[type="password"] {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.registration-form button.register-button {
+  padding: 10px;
+  background-color: #4895EF;
+  color: #ffffff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.registration-form button.register-button:hover {
+  background-color: #BBD0FF;
+}
+
+.registration-form p {
+    position: relative;
+    top: -50px;
+    text-align: center;
+}
+
+.registration-form p a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.registration-form p a:hover {
+    text-decoration: underline;
+}
+

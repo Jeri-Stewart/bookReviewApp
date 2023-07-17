@@ -11,21 +11,29 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class UserServiceImpl implements UserService {
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
-    // USER REGISTRATION
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+
+    @Autowired
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
+
     @Override
     @Transactional
     public List<String> addUser(UserDto userDto) {
+        log.debug("Adding a new user: {}", userDto.getUsername());
         List<String> response = new ArrayList<>();
 
         // Check if username already exists
@@ -42,42 +50,40 @@ public class UserServiceImpl implements UserService {
                 // Hash password
                 String hashedPassword = passwordEncoder.encode(user.getPassword());
                 user.setPassword(hashedPassword);
-                userRepository.saveAndFlush(user);
+                userRepository.save(user);
                 response.add("User registered successfully");
             }
         }
         return response;
     }
 
-    // USER LOGIN
     @Override
-    public List<String> userLogin(UserDto userDto) {
+    public List<String> userLogin(String username, String password) {
         List<String> response = new ArrayList<>();
 
-        Optional<User> userOptional = userRepository.findByEmail(userDto.getEmail());
+        Optional<User> userOptional = userRepository.findByUsername(username);
 
         if (userOptional.isPresent()) {
             // Check password matches hashed password
-            if (passwordEncoder.matches(userDto.getPassword(), userOptional.get().getPassword())) {
+            if (passwordEncoder.matches(password, userOptional.get().getPassword())) {
                 response.add("User login successful");
                 // Get the username
-                String username = userOptional.get().getUsername();
+                String retrievedUsername = userOptional.get().getUsername();
                 // Create User Session
-                storeUserSession(userOptional.get(), username);
+                storeUserSession(userOptional.get(), retrievedUsername);
             } else {
-                response.add("Email or Password is incorrect");
+                response.add("Username or Password is incorrect");
             }
         } else {
-            response.add("Email or Password is incorrect");
+            response.add("Username or Password is incorrect");
         }
 
         return response;
     }
 
-    // Create User Session
     private void storeUserSession(User user, String username) {
         UserSession userSession = new UserSession(user, username);
         SecurityContextHolder.getContext().setAuthentication((Authentication) userSession);
     }
-
 }
+

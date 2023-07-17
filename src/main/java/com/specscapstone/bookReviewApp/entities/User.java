@@ -34,24 +34,6 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "phone_number")
-    private String phoneNumber;
-
-    @Column(name = "address")
-    private String address;
-
-    @Column(name = "city")
-    private String city;
-
-    @Column(name = "state")
-    private String state;
-
-    @Column(name = "zip_code")
-    private Integer zipCode;
-
-    @Column(name = "date_of_birth")
-    private Date dateOfBirth;
-
     // table relationships
 
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
@@ -71,23 +53,6 @@ public class User {
         if (userDto.getUsername() != null) {
             this.username = userDto.getUsername();
         }
-        if (userDto.getPhoneNumber() != null) {
-            this.phoneNumber = userDto.getPhoneNumber();
-        }
-        if (userDto.getAddress() != null) {
-            this.address = userDto.getAddress();
-        }
-        if (userDto.getCity() != null) {
-            this.city = userDto.getCity();
-        }
-        if (userDto.getState() != null) {
-            this.state = userDto.getState();
-        }
-        if (userDto.getZipCode() != null) {
-            this.zipCode = userDto.getZipCode();
-        }
-        if (userDto.getDateOfBirth() != null) {
-            this.dateOfBirth = userDto.getDateOfBirth();
-        }
     }
 }
+
