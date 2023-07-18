@@ -144,4 +144,102 @@ h2 {
   font-size: 14px;
 }
 
+/* REVIEW CONTAINER*/
+
+.review-container form {
+  background-color: #FFFFFF;
+  display: inline-block;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  height: 100%; /* Make the form occupy the full height of the .review-container */
+  width: 100%; /* Make the form occupy the full width of the .review-container */
+}
+
+.review-container form .form-group {
+  margin-bottom: 20px;
+}
+
+.review-container form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.review-container form select,
+.review-container form input[type="number"],
+.review-container form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.review-container form button[type="submit"] {
+  padding: 10px;
+  background-color: #4895EF;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.review-container form button[type="submit"]:hover {
+  background-color: #BBD0FF;
+}
+
+/* REVIEW CONTAINER */
+
+.review-container form {
+  background-color: #FFFFFF;
+  display: inline-block;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  height: 100%; /* Make the form occupy the full height of the .review-container */
+  width: 100%; /* Make the form occupy the full width of the .review-container */
+}
+
+.review-container form .form-group {
+  margin-bottom: 20px;
+}
+
+.review-container form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.review-container form select,
+.review-container form input[type="number"],
+.review-container form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.review-container form button[type="submit"] {
+  padding: 10px;
+  background-color: #4895EF;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.review-container form button[type="submit"]:hover {
+  background-color: #BBD0FF;
+}
+
+#deleteBtn {
+  background-color: #FFD6FF;
+  color: #F72585;
+  border: none;
+  border-radius: 3px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
 

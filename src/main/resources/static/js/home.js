@@ -34,29 +34,10 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch("/api/v1/reviews")
     .then((response) => response.json())
     .then((reviews) => {
-      // Shuffle the reviews array randomly
-      const shuffledReviews = shuffleArray(reviews);
-
-      // Get the first 9 reviews
-      const randomReviews = shuffledReviews.slice(0, 9);
-
-      randomReviews.forEach((review) => {
+      reviews.forEach((review) => {
         const reviewCard = document.createElement("div");
         reviewCard.classList.add("review-card");
-/*
-        const bookImage = document.createElement("img");
-        bookImage.src = review.book.image;
-        bookImage.alt = review.book.title;
-        reviewCard.appendChild(bookImage);
 
-        const bookTitle = document.createElement("h3");
-        bookTitle.innerText = review.book.title;
-        reviewCard.appendChild(bookTitle);
-
-        const authorName = document.createElement("p");
-        authorName.innerText = review.book.author.name;
-        reviewCard.appendChild(authorName);
-*/
         const rating = document.createElement("p");
         rating.innerText = `Rating: ${review.rating} out of 5`;
         reviewCard.appendChild(rating);
@@ -65,6 +46,15 @@ document.addEventListener("DOMContentLoaded", () => {
         reviewContent.innerText = review.review;
         reviewCard.appendChild(reviewContent);
 
+        const deleteButton = document.createElement("button");
+        deleteButton.innerText = "Delete";
+        deleteButton.id = "deleteBtn"
+        deleteButton.addEventListener("click", () => {
+          deleteReview(review.id);
+          reviewCard.remove();
+        });
+        reviewCard.appendChild(deleteButton);
+
         reviewContainerElement.appendChild(reviewCard);
       });
     })
@@ -72,15 +62,20 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Error fetching reviews:", error);
     });
 
-  // Shuffle the array randomly
-  function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
+  function deleteReview(reviewId) {
+    fetch(`/api/v1/reviews/${reviewId}`, {
+      method: "DELETE",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Review deleted:", data);
+      })
+      .catch((error) => {
+        console.error("Error deleting review:", error);
+      });
   }
 });
+
 
 
 
