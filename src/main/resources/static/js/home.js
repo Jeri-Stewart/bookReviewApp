@@ -1,3 +1,20 @@
+// home.js
+document.addEventListener("DOMContentLoaded", () => {
+  const loggedInUsernameElement = document.getElementById("loggedInUsername");
+
+  // Get the value of the Thymeleaf expression `${loggedInUsername}`
+  const loggedInUsername = loggedInUsernameElement.innerText;
+
+  // Set the retrieved value as the content of the element
+  loggedInUsernameElement.innerText = loggedInUsername;
+
+  console.log("Logged-in username:", loggedInUsername);
+});
+
+
+
+
+
 /*
 
 window.addEventListener('DOMContentLoaded', () => {

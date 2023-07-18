@@ -48,6 +48,7 @@ public class MainController {
 
         // Pass the user details to the view
         modelAndView.addObject("user", user);
+        modelAndView.addObject("loggedInUsername", username); // Add loggedInUsername attribute
 
         return modelAndView;
     }
