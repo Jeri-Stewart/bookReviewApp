@@ -1,60 +1,147 @@
+/* style.css */
+
+h1 {
+  color: #F72585;
+  font-family: Impact, sans-serif;
+}
+
 .navbar {
-    background-color: #480CA8;
-    color: #fff;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background-color: #480CA8;
+  color: #fff;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .navbar-links {
-    display: flex;
-    justify-content: flex-start;
+  display: flex;
+  justify-content: flex-start;
+  color: #fff;
+  font-size: 20px; /* Increase the font size as desired */
+  font-family: "Courier", monospace; /* Set the font-family to Courier */
+
 }
 
 .navbar-user-info {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .navbar-link {
-    color: #fff;
-    margin-right: 10px;
-    text-decoration: none;
+  color: #fff;
+  margin-right: 50px;
+  text-decoration: none;
 }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 .section {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 h2 {
-    color: #333;
+  color: #4361EE;
 }
 
 .book-list {
-    overflow-x: auto;
-    white-space: nowrap;
-}
-
-.book-reviews {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+  overflow-x: auto;
+  white-space: nowrap;
+  display: flex;
+  gap: 10px;
 }
 
 .book-card {
-    background-color: #f9f9f9;
-    padding: 10px;
-    border-radius: 5px;
+  flex: 0 0 auto;
+  width: 100px; /* Adjust the width of each book card as needed */
+  height: 145px; /* Updated height to 100px */
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .book-card:hover {
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
+
+.book-card img {
+  height: 140px; /* Updated height to 80px */
+  width: auto; /* Preserve aspect ratio */
+  object-fit: contain; /* Fit the image within the specified height and width */
+}
+
+
+/* Hide scrollbar for Chrome */
+.book-list::-webkit-scrollbar {
+  width: 8px; /* Adjust the width as needed */
+}
+
+.book-list::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Adjust the background color as needed */
+}
+
+.book-list::-webkit-scrollbar-thumb {
+  background-color: #B8C0FF; /* Adjust the thumb color as needed */
+}
+
+.book-list::-webkit-scrollbar-thumb:hover {
+  background-color: #FFD6FF; /* Adjust the thumb color on hover as needed */
+}
+
+
+/* REVIEWS STYLING */
+
+.review-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+
+.review-card {
+  border: 1px solid #ddd;
+  padding: 20px;
+  display: flex;
+  border-radius: 2px;
+}
+
+.review-card img {
+  width: 100px;
+  height: 150px;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.review-card-content {
+  flex-grow: 1;
+}
+
+.review-card-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.review-card-author {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.review-card-rating {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.review-card-review {
+  font-size: 14px;
+}
+
 

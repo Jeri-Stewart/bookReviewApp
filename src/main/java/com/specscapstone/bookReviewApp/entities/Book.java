@@ -41,10 +41,6 @@ public class Book {
 
     @OneToMany(mappedBy = "book", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JsonBackReference
-    private List<Rating> ratings;
-
-    @OneToMany(mappedBy = "book", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JsonBackReference
     private List<Bookshelf> bookshelf;
 
     public Book(BookDto bookDto) {

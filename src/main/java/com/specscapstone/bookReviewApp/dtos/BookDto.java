@@ -17,6 +17,7 @@ public class BookDto implements Serializable {
     private Long authorId;
     private String isbn;
     private String image;
+    private AuthorDto author;
 
     public BookDto(Book book) {
         this.bookId = book.getBookId();
@@ -24,6 +25,10 @@ public class BookDto implements Serializable {
         this.authorId = book.getAuthor().getAuthorId();
         this.isbn = book.getIsbn();
         this.image = book.getImage();
+    }
+
+    public void setAuthor(AuthorDto authorDto) {
+        this.author = authorDto;
     }
 }
 

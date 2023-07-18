@@ -1,5 +1,7 @@
 package com.specscapstone.bookReviewApp.services;
 
+import com.specscapstone.bookReviewApp.dtos.AuthorDto;
+import com.specscapstone.bookReviewApp.dtos.BookDto;
 import com.specscapstone.bookReviewApp.dtos.ReviewDto;
 import com.specscapstone.bookReviewApp.entities.Book;
 import com.specscapstone.bookReviewApp.entities.Review;
@@ -10,7 +12,7 @@ import com.specscapstone.bookReviewApp.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,11 +32,25 @@ public class ReviewServiceImpl implements ReviewService {
     private UserRepository userRepository;
 
     @Override
+    public List<ReviewDto> getAllReviews() {
+        List<Review> reviewList = reviewRepository.findAllWithBookAndAuthor();
+        return reviewList.stream()
+                .map(review -> {
+                    ReviewDto reviewDto = new ReviewDto(review);
+                    BookDto bookDto = new BookDto(review.getBook());
+                    bookDto.setAuthor(new AuthorDto(review.getBook().getAuthor()));
+                    reviewDto.setBook(bookDto);
+                    return reviewDto;
+                })
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public List<ReviewDto> getAllReviewsByUserId(Long userId) {
         Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isPresent()) {
             List<Review> reviewList = reviewRepository.findAllByUser(userOptional.get());
-            return reviewList.stream().map(review -> new ReviewDto(review)).collect(Collectors.toList());
+            return reviewList.stream().map(ReviewDto::new).collect(Collectors.toList());
         }
         return Collections.emptyList();
     }
@@ -151,5 +167,8 @@ public class ReviewServiceImpl implements ReviewService {
         return response;
     }
 }
+
+
+
 
 

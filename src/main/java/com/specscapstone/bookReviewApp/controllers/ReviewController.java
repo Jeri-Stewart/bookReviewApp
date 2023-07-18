@@ -15,6 +15,12 @@ public class ReviewController {
     @Autowired
     private ReviewService reviewService;
 
+    // Get all reviews
+    @GetMapping
+    public List<ReviewDto> getAllReviews() {
+        return reviewService.getAllReviews();
+    }
+
     // Get all reviews by user ID
     @GetMapping("/user/{userId}")
     public List<ReviewDto> getReviewsByUserId(@PathVariable Long userId) {
