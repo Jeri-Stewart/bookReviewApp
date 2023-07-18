@@ -3,8 +3,6 @@ package com.specscapstone.bookReviewApp.services;
 import com.specscapstone.bookReviewApp.entities.User;
 import com.specscapstone.bookReviewApp.dtos.UserDto;
 import com.specscapstone.bookReviewApp.repositories.UserRepository;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,9 +54,20 @@ public class UserServiceImpl implements UserService {
         return response;
     }
 
-
+    @Override
+    public User getUserById(long userId) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        return userOptional.orElse(null);
+    }
 
     @Override
+    public User getUserByUsername(String username) {
+        Optional<User> userOptional = userRepository.findByUsername(username);
+        return userOptional.orElse(null);
+    }
+
+    @Override
+    @Transactional
     public List<String> logUser(String username, String password) {
         List<String> response = new ArrayList<>();
 
@@ -78,4 +87,7 @@ public class UserServiceImpl implements UserService {
         return response;
     }
 }
+
+
+
 

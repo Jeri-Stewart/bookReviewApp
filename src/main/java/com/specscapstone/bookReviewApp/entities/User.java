@@ -57,5 +57,9 @@ public class User {
             this.password = userDto.getPassword();
         }
     }
+
+    public long getId() {
+        return userId;
+    }
 }
 

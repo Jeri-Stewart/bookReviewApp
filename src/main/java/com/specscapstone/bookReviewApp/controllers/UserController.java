@@ -33,10 +33,12 @@ public class UserController {
     }
 
     // To log in a user
-    @PostMapping("/login-user")
-    public List<String> userLogin(@RequestBody UserDto userDto) {
-        String username = userDto.getUsername();
+    @PostMapping("/login-user/{username}")
+    public List<String> userLogin(@PathVariable("username") String username, @RequestBody UserDto userDto) {
         String password = userDto.getPassword();
         return userService.logUser(username, password);
     }
 }
+
+
+
