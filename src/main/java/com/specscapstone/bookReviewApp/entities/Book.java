@@ -39,9 +39,6 @@ public class Book {
     @JsonBackReference
     private List<Review> reviews;
 
-    @OneToMany(mappedBy = "book", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JsonBackReference
-    private List<Bookshelf> bookshelf;
 
     public Book(BookDto bookDto) {
         if (bookDto.getTitle() != null) {
@@ -55,6 +52,4 @@ public class Book {
         }
     }
 
-    public void setOverallRating(Double overallRating) {
-    }
 }

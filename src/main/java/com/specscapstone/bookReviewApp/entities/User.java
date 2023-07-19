@@ -35,11 +35,6 @@ public class User {
     private String password;
 
     // table relationships
-
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JsonBackReference
-    private Set<Bookshelf> bookshelf;
-
     public User(UserDto userDto) {
         if (userDto.getFirstName() != null) {
             this.firstName = userDto.getFirstName();

@@ -5,6 +5,14 @@ h1 {
   font-family: Impact, sans-serif;
 }
 
+a:link {
+  color: #FFD6FF;
+}
+
+a:visited {
+  color: #FFD6FF;
+}
+
 .navbar {
   background-color: #480CA8;
   color: #fff;
@@ -18,18 +26,25 @@ h1 {
   display: flex;
   justify-content: flex-start;
   color: #fff;
-  font-size: 20px; /* Increase the font size as desired */
-  font-family: "Courier", monospace; /* Set the font-family to Courier */
+  font-size: 20px;
+  font-family: "Courier", monospace;
 
 }
+
+.navbar-link:first-child {
+  font-size: 24px;
+}
+
 
 .navbar-user-info {
   display: flex;
   justify-content: flex-end;
+  color: #FFD6FF;
+  font-size: 24px;
 }
 
 .navbar-link {
-  color: #fff;
+  color: #FFD6FF;
   margin-right: 50px;
   text-decoration: none;
 }
@@ -74,27 +89,27 @@ h2 {
 }
 
 .book-card img {
-  height: 140px; /* Updated height to 80px */
-  width: auto; /* Preserve aspect ratio */
-  object-fit: contain; /* Fit the image within the specified height and width */
+  height: 140px;
+  width: auto;
+  object-fit: contain;
 }
 
 
 /* Hide scrollbar for Chrome */
 .book-list::-webkit-scrollbar {
-  width: 8px; /* Adjust the width as needed */
+  width: 8px;
 }
 
 .book-list::-webkit-scrollbar-track {
-  background-color: #f1f1f1; /* Adjust the background color as needed */
+  background-color: #f1f1f1; /* Adjust the background color */
 }
 
 .book-list::-webkit-scrollbar-thumb {
-  background-color: #B8C0FF; /* Adjust the thumb color as needed */
+  background-color: #B8C0FF; /* Adjust the thumb color */
 }
 
 .book-list::-webkit-scrollbar-thumb:hover {
-  background-color: #FFD6FF; /* Adjust the thumb color on hover as needed */
+  background-color: #FFD6FF; /* Adjust the thumb color on hover  */
 }
 
 
@@ -108,9 +123,11 @@ h2 {
 
 .review-card {
   border: 1px solid #ddd;
+  background-color: #BBD0FF;
   padding: 20px;
   display: flex;
-  border-radius: 2px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 .review-card img {
@@ -127,47 +144,45 @@ h2 {
 .review-card-title {
   font-size: 18px;
   font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.review-card-author {
-  font-size: 16px;
-  margin-bottom: 10px;
-}
-
-.review-card-rating {
-  font-size: 14px;
+  color: #480CA8;
   margin-bottom: 10px;
 }
 
 .review-card-review {
   font-size: 14px;
+  font-family: "Courier", monospace;
 }
 
-/* REVIEW CONTAINER*/
+/* REVIEW FORM CONTAINER*/
 
-.review-container form {
-  background-color: #FFFFFF;
-  display: inline-block;
+.review-form-container form {
+  background-color: #FFD6FF;
+  display: flex;
+  flex-direction: column;
+  align-items: right; /* Center the form horizontally */
+  justify-content: center; /* Center the form vertically */
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   flex: 1;
-  height: 100%; /* Make the form occupy the full height of the .review-container */
-  width: 100%; /* Make the form occupy the full width of the .review-container */
+  height: 100%;
+  width: 25%;
+  margin: 0 auto;
 }
 
-.review-container form .form-group {
+.review-form-container form .form-group {
   margin-bottom: 20px;
 }
 
-.review-container form label {
+.review-form-container form label {
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
+  color: #F72585;
+  font-family: "Courier", monospace;
 }
 
-.review-container form select,
+.review-form-container form select,
 .review-container form input[type="number"],
 .review-container form textarea {
   width: 100%;
@@ -176,7 +191,7 @@ h2 {
   border-radius: 3px;
 }
 
-.review-container form button[type="submit"] {
+.review-form-container form button[type="submit"] {
   padding: 10px;
   background-color: #4895EF;
   color: #FFFFFF;
@@ -185,56 +200,13 @@ h2 {
   cursor: pointer;
 }
 
-.review-container form button[type="submit"]:hover {
+.review-form-container form button[type="submit"]:hover {
   background-color: #BBD0FF;
 }
 
 /* REVIEW CONTAINER */
 
-.review-container form {
-  background-color: #FFFFFF;
-  display: inline-block;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  flex: 1;
-  height: 100%; /* Make the form occupy the full height of the .review-container */
-  width: 100%; /* Make the form occupy the full width of the .review-container */
-}
-
-.review-container form .form-group {
-  margin-bottom: 20px;
-}
-
-.review-container form label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.review-container form select,
-.review-container form input[type="number"],
-.review-container form textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-}
-
-.review-container form button[type="submit"] {
-  padding: 10px;
-  background-color: #4895EF;
-  color: #FFFFFF;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-.review-container form button[type="submit"]:hover {
-  background-color: #BBD0FF;
-}
-
-#deleteBtn {
+.delete-button {
   background-color: #FFD6FF;
   color: #F72585;
   border: none;

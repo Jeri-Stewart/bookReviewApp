@@ -12,19 +12,23 @@ import java.util.Optional;
 
 @Service
 public class AuthorServiceImpl implements AuthorService {
+    private final AuthorRepository authorRepository;
+
     @Autowired
-    private AuthorRepository authorRepository;
+    public AuthorServiceImpl(AuthorRepository authorRepository) {
+        this.authorRepository = authorRepository;
+    }
 
     @Override
     public List<AuthorDto> getAllAuthors() {
         List<Author> authors = authorRepository.findAll();
-        return authors.stream().map(author -> new AuthorDto(author)).toList();
+        return authors.stream().map(AuthorDto::new).toList();
     }
 
     @Override
     public Optional<AuthorDto> getAuthorById(Long authorId) {
         Optional<Author> authorOptional = authorRepository.findById(authorId);
-        return authorOptional.map(author -> new AuthorDto(author));
+        return authorOptional.map(AuthorDto::new);
     }
 
     @Override
@@ -33,7 +37,7 @@ public class AuthorServiceImpl implements AuthorService {
         List<String> response = new ArrayList<>();
 
         Author author = new Author(authorDto);
-        authorRepository.saveAndFlush(author);
+        authorRepository.save(author);
         response.add("Author added successfully");
 
         return response;
@@ -44,11 +48,11 @@ public class AuthorServiceImpl implements AuthorService {
     public List<String> updateAuthor(Long authorId, AuthorDto authorDto) {
         List<String> response = new ArrayList<>();
 
-        Optional<Author> authorOptional = authorRepository.findById(authorDto.getAuthorId());
+        Optional<Author> authorOptional = authorRepository.findById(authorId);
         if (authorOptional.isPresent()) {
             Author author = authorOptional.get();
             author.setName(authorDto.getName());
-            authorRepository.saveAndFlush(author);
+            authorRepository.save(author);
             response.add("Author updated successfully");
         } else {
             response.add("Author not found");
@@ -73,3 +77,4 @@ public class AuthorServiceImpl implements AuthorService {
         return response;
     }
 }
+

@@ -1,14 +1,14 @@
 package com.specscapstone.bookReviewApp.entities;
 
-import jakarta.persistence.*;
-import java.util.*;
 import com.specscapstone.bookReviewApp.dtos.AuthorDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import java.util.List;
+import jakarta.persistence.*;
+import java.util.Set;
+
 @Entity
 @Table(name = "authors")
 @Data
@@ -30,12 +30,10 @@ public class Author {
     private Set<Book> books;
 
     public Author(AuthorDto authorDto) {
-        if (authorDto.getName() != null) {
+        if (authorDto != null) {
+            this.authorId = authorDto.getAuthorId();
             this.name = authorDto.getName();
         }
     }
-
-    public Author(Long authorId) {
-        this.authorId = authorId;
-    }
 }
+

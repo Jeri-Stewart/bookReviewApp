@@ -48,33 +48,8 @@ public class MainController {
 
         // Pass the user details to the view
         modelAndView.addObject("user", user);
-        modelAndView.addObject("loggedInUsername", username); // Add loggedInUsername attribute
-
-        return modelAndView;
-    }
-
-    @GetMapping("/profile/{username}")
-    public ModelAndView profile(@PathVariable("username") String username) {
-        ModelAndView modelAndView = new ModelAndView("profile");
-
-        // Retrieve the user details using the username
-        User user = userService.getUserByUsername(username);
-
-        // Pass the user details to the view
-        modelAndView.addObject("user", user);
-
-        return modelAndView;
-    }
-
-    @GetMapping("/reviews/{username}")
-    public ModelAndView reviews(@PathVariable("username") String username) {
-        ModelAndView modelAndView = new ModelAndView("reviews");
-
-        // Retrieve the user details using the username
-        User user = userService.getUserByUsername(username);
-
-        // Pass the user details to the view
-        modelAndView.addObject("user", user);
+        modelAndView.addObject("loggedInUsername", username);
+        modelAndView.addObject("loggedInUserId", user.getId());
 
         return modelAndView;
     }

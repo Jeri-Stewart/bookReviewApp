@@ -6,6 +6,7 @@ import com.specscapstone.bookReviewApp.dtos.ReviewDto;
 import com.specscapstone.bookReviewApp.entities.Book;
 import com.specscapstone.bookReviewApp.entities.Review;
 import com.specscapstone.bookReviewApp.entities.User;
+import com.specscapstone.bookReviewApp.repositories.AuthorRepository;
 import com.specscapstone.bookReviewApp.repositories.BookRepository;
 import com.specscapstone.bookReviewApp.repositories.ReviewRepository;
 import com.specscapstone.bookReviewApp.repositories.UserRepository;
@@ -30,6 +31,10 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private AuthorRepository authorRepository;
+
 
     @Override
     public List<ReviewDto> getAllReviews() {
@@ -63,7 +68,7 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     @Transactional
-    public List<String> addReview(ReviewDto reviewDto, Long bookId) {
+    public List<String> addReviewByBookId(ReviewDto reviewDto, Long bookId) {
         List<String> response = new ArrayList<>();
 
         Optional<Book> bookOptional = bookRepository.findById(bookId);
@@ -110,28 +115,16 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     @Transactional
-    public List<String> updateReview(Long reviewId, ReviewDto reviewDto, String username) {
+    public List<String> updateReview(Long reviewId, ReviewDto reviewDto) {
         List<String> response = new ArrayList<>();
 
         Optional<Review> reviewOptional = reviewRepository.findById(reviewId);
         if (reviewOptional.isPresent()) {
-            Optional<User> userOptional = userRepository.findByUsername(username);
-
-            if (userOptional.isPresent()) {
                 Review review = reviewOptional.get();
-
-                if (!review.getUser().equals(userOptional.get())) {
-                    response.add("You don't have permission to update this review");
-                    return response;
-                }
-
                 review.setReview(reviewDto.getReview());
                 reviewRepository.saveAndFlush(review);
                 response.add("Review updated successfully");
             } else {
-                response.add("User not found");
-            }
-        } else {
             response.add("Review not found");
         }
 
@@ -140,27 +133,14 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     @Transactional
-    public List<String> deleteReview(Long reviewId, String username) {
+    public List<String> deleteReview(Long reviewId) {
         List<String> response = new ArrayList<>();
 
         Optional<Review> reviewOptional = reviewRepository.findById(reviewId);
         if (reviewOptional.isPresent()) {
-            Optional<User> userOptional = userRepository.findByUsername(username);
-
-            if (userOptional.isPresent()) {
-                Review review = reviewOptional.get();
-
-                if (!review.getUser().equals(userOptional.get())) {
-                    response.add("You don't have permission to delete this review");
-                    return response;
-                }
-
                 reviewRepository.deleteById(reviewId);
                 response.add("Review deleted successfully");
             } else {
-                response.add("User not found");
-            }
-        } else {
             response.add("Review not found");
         }
 

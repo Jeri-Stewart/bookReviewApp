@@ -15,12 +15,6 @@ public class ReviewController {
     @Autowired
     private ReviewService reviewService;
 
-    // Get all reviews
-    @GetMapping
-    public List<ReviewDto> getAllReviews() {
-        return reviewService.getAllReviews();
-    }
-
     // Get all reviews by user ID
     @GetMapping("/user/{userId}")
     public List<ReviewDto> getReviewsByUserId(@PathVariable Long userId) {
@@ -33,12 +27,6 @@ public class ReviewController {
         return reviewService.getReviewById(reviewId);
     }
 
-    // Add review for a book
-    @PostMapping("/book/{bookId}")
-    public List<String> addReviewForBook(@RequestBody ReviewDto reviewDto, @PathVariable Long bookId) {
-        return reviewService.addReview(reviewDto, bookId);
-    }
-
     // Add review for a book and user
     @PostMapping("/user/{userId}/book/{bookId}")
     public List<String> addReviewForUserAndBook(@RequestBody ReviewDto reviewDto, @PathVariable Long userId, @PathVariable Long bookId) {
@@ -47,16 +35,14 @@ public class ReviewController {
 
     // Update review
     @PutMapping("/{reviewId}")
-    public List<String> updateReview(@PathVariable Long reviewId, @RequestBody ReviewDto reviewDto, Authentication authentication) {
-        String username = authentication.getName();
-        return reviewService.updateReview(reviewId, reviewDto, username);
+    public List<String> updateReview(@PathVariable Long reviewId, @RequestBody ReviewDto reviewDto) {
+        return reviewService.updateReview(reviewId, reviewDto);
     }
 
     // Delete review
     @DeleteMapping("/{reviewId}")
-    public List<String> deleteReview(@PathVariable Long reviewId, Authentication authentication) {
-        String username = authentication.getName();
-        return reviewService.deleteReview(reviewId, username);
+    public List<String> deleteReview(@PathVariable Long reviewId) {
+        return reviewService.deleteReview(reviewId);
     }
 }
 
